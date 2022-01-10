@@ -56,6 +56,17 @@ defmodule TeslaApi.Vehicle do
     )
     |> handle_response(transform: &result/1)
   end
+  
+  def wake(%Auth{} = auth, id) do
+    endpoint_url =
+      case Auth.region(auth) do
+        :chinese -> "https://owner-api.vn.cloud.tesla.cn"
+        _global -> "https://owner-api.teslamotors.com"
+      end
+
+    TeslaApi.get(endpoint_url <> "/api/1/vehicles/#{id}/wake_up", opts: [access_token: auth.token])
+    |> handle_response(transform: &result/1)
+  end
 
   def result(v) do
     %__MODULE__{
