@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.25.2] - 2022-01-12
+
+- Bump app base image to Debian 11 to fix `GLIBC_2.29' not found` error
+- Bump Grafana to 7.5.12
+
+## [1.25.1] - 2022-01-12
+
+- Disable anonymous logins to Grafana (when using the `teslamate/grafana` Docker image)
+    - The first time you visit Grafana, you will be asked to log in. Use the default user `admin` with the password `admin`. After successful login, you will be prompted to change the password.
+    - To allow anonymous logins set the environment variable of the Grafana image `GF_AUTH_ANONYMOUS_ENABLED` to `true` (use only if your Grafana instance is not exposed to the internet!)
+
 ## [1.25.0] - 2021-11-12
 
 ### Improvements and Bug Fixes
@@ -1417,6 +1428,8 @@ New users need to sign in via the web interface.
 
 ## [1.0.0] - 2019-07-25
 
+[1.25.2]: https://github.com/adriankumpf/teslamate/compare/v1.25.1...v1.25.2
+[1.25.1]: https://github.com/adriankumpf/teslamate/compare/v1.25.0...v1.25.1
 [1.25.0]: https://github.com/adriankumpf/teslamate/compare/v1.24.2...v1.25.0
 [1.24.2]: https://github.com/adriankumpf/teslamate/compare/v1.24.1...v1.24.2
 [1.24.1]: https://github.com/adriankumpf/teslamate/compare/v1.24.0...v1.24.1
