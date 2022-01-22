@@ -8,14 +8,20 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1623230784531,
+  "iteration": 1642782365506,
   "links": [
     {
       "asDropdown": false,
@@ -44,6 +50,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -57,13 +64,6 @@
       "id": 4,
       "panels": [],
       "repeat": "car_id",
-      "scopedVars": {
-        "car_id": {
-          "selected": false,
-          "text": "1",
-          "value": "1"
-        }
-      },
       "title": "$car_id",
       "type": "row"
     },
@@ -72,7 +72,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
+            "align": "auto",
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -103,7 +104,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 170
+                "value": 180
               },
               {
                 "id": "links",
@@ -156,8 +157,8 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": 1
+                "id": "custom.hidden",
+                "value": true
               }
             ]
           },
@@ -168,8 +169,8 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": 1
+                "id": "custom.hidden",
+                "value": true
               }
             ]
           },
@@ -252,6 +253,10 @@
                     "url": "[[base_url:raw]]/geo-fences/${__data.fields.start_path}"
                   }
                 ]
+              },
+              {
+                "id": "custom.minWidth",
+                "value": 200
               }
             ]
           },
@@ -270,6 +275,10 @@
                     "url": "[[base_url:raw]]/geo-fences/${__data.fields.end_path}"
                   }
                 ]
+              },
+              {
+                "id": "custom.minWidth",
+                "value": 200
               }
             ]
           },
@@ -280,8 +289,8 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": 1
+                "id": "custom.hidden",
+                "value": true
               }
             ]
           },
@@ -292,8 +301,8 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": 1
+                "id": "custom.hidden",
+                "value": true
               }
             ]
           },
@@ -478,6 +487,18 @@
                 ]
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "slotlink"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
           }
         ]
       },
@@ -489,6 +510,13 @@
       },
       "id": 2,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -497,14 +525,7 @@
           }
         ]
       },
-      "pluginVersion": "7.5.4",
-      "scopedVars": {
-        "car_id": {
-          "selected": false,
-          "text": "1",
-          "value": "1"
-        }
-      },
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "format": "table",
@@ -535,8 +556,6 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Timeline",
       "transformations": [
         {
@@ -557,10 +576,10 @@
               "Start Address": 3,
               "distance_km": 8,
               "distance_mi": 9,
-              "end_range_km": 10,
-              "end_range_mi": 11,
               "end_date_ts": 22,
               "end_path": 20,
+              "end_range_km": 10,
+              "end_range_mi": 11,
               "kWh": 13,
               "odometer_km": 5,
               "odometer_mi": 6,
@@ -593,7 +612,7 @@
     }
   ],
   "refresh": "1h",
-  "schemaVersion": 27,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
     "tesla"
@@ -601,7 +620,6 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "All",
@@ -609,8 +627,6 @@
         },
         "datasource": "TeslaMate",
         "definition": "SELECT name AS __text, id AS __value FROM cars ORDER BY display_priority ASC, name ASC;",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": "Car",
@@ -623,13 +639,11 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "http://localhost:4000",
@@ -637,11 +651,8 @@
         },
         "datasource": "TeslaMate",
         "definition": "select base_url from settings limit 1;",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "base_url",
         "options": [],
@@ -651,13 +662,11 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": [
@@ -667,8 +676,6 @@
             "$__all"
           ]
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Action",
@@ -717,8 +724,6 @@
           "text": "",
           "value": ""
         },
-        "description": null,
-        "error": null,
         "hide": 2,
         "label": "Text Filter",
         "name": "text_filter",
@@ -734,7 +739,6 @@
         "type": "textbox"
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "km",
@@ -742,8 +746,6 @@
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_length from settings limit 1;",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
         "label": "length unit",
@@ -756,13 +758,11 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "C",
@@ -770,8 +770,6 @@
         },
         "datasource": "TeslaMate",
         "definition": "select unit_of_temperature from settings limit 1;",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
         "label": "temperature unit",
@@ -784,13 +782,11 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "ideal",
@@ -798,11 +794,8 @@
         },
         "datasource": "TeslaMate",
         "definition": "select preferred_range from settings limit 1;",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "preferred_range",
         "options": [],
@@ -812,7 +805,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -827,5 +819,6 @@
   "timezone": "",
   "title": "Timeline",
   "uid": "SUBgwtigz",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
